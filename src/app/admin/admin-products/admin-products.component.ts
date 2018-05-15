@@ -42,7 +42,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
     if(!this.tableResource) return;
 
-    this.tableResource.query({ offset:0 })
+    this.tableResource.query(params)
     .then(items => this.items = items);
 
   }
