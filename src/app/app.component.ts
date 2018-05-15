@@ -13,15 +13,16 @@ export class AppComponent {
     //we get the user object using the user observable subscription
     auth.user$.subscribe(user => {
       //we gonna read the localstorage reurnUrl
-      if (user) {
+      if(!user) return;
         
         userService.save(user);
 
         //store the user in the firebase db
         let returnUrl = localStorage.getItem('returnUrl');
+        if(!returnUrl) return;
         //navigate to the specific url
-        router.navigateByUrl(returnUrl);
-      }
+          localStorage.removeItem('retunUrl');
+          router.navigateByUrl(returnUrl);
     })
   }
 }
