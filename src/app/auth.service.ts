@@ -53,3 +53,4 @@ export class AuthService {
 
 }
 //we added auth.service.ts simply to enable testability of our components and also have a better separation of concern in our code
+}
