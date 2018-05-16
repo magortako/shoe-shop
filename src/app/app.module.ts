@@ -57,7 +57,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     NgbModule.forRoot(),
     RouterModule.forRoot([
       //ANONYMOUS USER ACCESS
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingComponent },
       { path: 'login', component: LoginComponent },
