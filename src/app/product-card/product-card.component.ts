@@ -14,20 +14,9 @@ export class ProductCardComponent {
   constructor( private cartService : ShoppingCartService ) { }
 
   addToCart(product:Product){
-    //store the product to localstorage if not logged in
-    let cartId = localStorage.getItem('cartId');
 
-    if(!cartId) {
+    this.cartService.addToCart(product);
 
-      this.cartService.create().then(result => {
-        localStorage.setItem('cartId', result.key);
-
-        //Add product to cart
-      });
-    }
-    else{
-      //Add product to cart
-    }
   }
 
 }
