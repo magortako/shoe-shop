@@ -42,12 +42,10 @@ export class AuthService {
        return this.user$
        
       // /we need to get this firebase user object and then read the actual application user object from the db
-  
       //we map and switch to a new observable returned from our user service .get method
       .switchMap(user => 
       {
         if (user) return this.userservice.get(user.uid);
-
         return Observable.of(null);
       });
 
