@@ -60,13 +60,17 @@ export class ShoppingCartService {
     let item$ = this.getItem(cartId, product.$key);
     item$.take(1).subscribe(item => {
 
+      let quantity = (item.quantity || 0) +change;
+      //remove item if quantity reaches 0
+      if (quantity === 0) item$ .remove();
       //Here we want to update the quantity
       //item$ is a reference to a node in Firebase
+      else
       item$.update({
         title: product.title,
         imageUrl: product.imageUrl,
         price: product.price,
-        quantity: (item.quantity || 0) + change
+        quantity: quantity
       });
       //calculation of quantity
       //quantity set to one if product is not in the shopping cart already
