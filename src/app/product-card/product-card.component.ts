@@ -15,7 +15,22 @@ export class ProductCardComponent {
 
   constructor(private cartService: ShoppingCartService) { }
 
-  addToCart(product: Product) {
-    this.cartService.addToCart(product)
+  addToCart() {
+    this.cartService.addToCart(this.product)
   }
+
+  removeFromCart(){
+    this.cartService.removeFromCart(this.product)
+  }
+
+  //Find the quantity of a specific product card
+  getQuantity(){
+    if(!this.shoppingCart) return 0;
+    //a reference to the shopping cart item 
+    let item = this.shoppingCart.items[this.product.$key];
+    //if there is no item with a key
+    return item ? item.quantity : 0;
+
+  }
+  
 }

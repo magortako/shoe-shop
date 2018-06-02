@@ -8,13 +8,6 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  // create(){
-  //   return this.db.list('/shopping-carts').push ({
-  //     dateCreated: new Date().getTime()
-  //   })
-  // }
-
-
    private create() { 
     return this.db.list('/shopping-carts').push({
       dateCreated: new Date().getTime()
@@ -22,7 +15,8 @@ export class ShoppingCartService {
   }
 
 
-  private getCart(cartId: string) {
+  async getCart() {
+    let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId);
   }
 
@@ -31,7 +25,7 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  private async getOrCreateCartId() {
+  private async getOrCreateCartId(): Promise<string> {
 
     let cartId = localStorage.getItem('cartId');
 
@@ -44,18 +38,25 @@ export class ShoppingCartService {
   }
 
   async addToCart(product : Product){
+    this.updateItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product : Product){
+    this.updateItemQuantity(product, -1)
+  }
+
+  private async updateItemQuantity(product:Product, change: number){
     let cartId = await this.getOrCreateCartId();
     let item$= this. getItem(cartId, product.$key);
     item$.take(1).subscribe( item => {
 
       //Here we want to update the quantity
       //item$ is a reference to a node in Firebase
-      item$.update({product: product, quantity:(item.quantity || 0) + 1});
+      item$.update({product: product, quantity:(item.quantity || 0) + change});
       //calculation of quantity
       //quantity set to one if product is not in the shopping cart already
 
     });
-    
-    
+
   }
 }
