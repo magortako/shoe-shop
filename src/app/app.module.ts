@@ -22,7 +22,6 @@ import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
-import { ShoppingComponent } from './shopping/shopping.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
@@ -32,6 +31,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -40,7 +40,6 @@ import { ProductCardComponent } from './product-card/product-card.component';
     BsNavbarComponent,
     HomeComponent,
     ProductsComponent,
-    ShoppingComponent,
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
@@ -49,7 +48,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +64,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
       //ANONYMOUS USER ACCESS
       { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'shopping-cart', component: ShoppingComponent },
+      { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
 
       //SIGNED IN USER ACCESS
