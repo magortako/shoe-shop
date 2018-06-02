@@ -6,15 +6,20 @@ export class ShoppingCart {
 
     constructor(public itemsMap: { [productId:string]: ShoppingCartItem }) {
         //initialize the items array based on the objects in the map
-        for (let productId in itemsMap)
-            this.items.push(itemsMap[productId]);
+        for (let productId in itemsMap){
+            let item = itemsMap[productId];
+            this.items.push(new ShoppingCartItem(item.product, item.quantity))
+        };
     }
 
-    //property that gives the ID of all the products from the shopping cart
-    // get productIds(){
-    //     //return all the object properties as an array --Firbease: Items object and the keys
-    //    return Object.keys(this.items)
-    // }
+
+    get totalPrice (){
+        let sum = 0;
+        for(let productId in this.items)
+            sum += this.items[productId].totalPrice;
+            return sum;
+    }
+
     get totalItemsCount() {
         let count = 0;
         for (let productId in this.itemsMap)
