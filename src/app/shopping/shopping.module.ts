@@ -10,8 +10,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [
     SharedModule,
-    FormsModule,
-    CommonModule,
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
