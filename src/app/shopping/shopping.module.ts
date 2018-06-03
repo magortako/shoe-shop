@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -9,6 +10,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [
     SharedModule,
+    FormsModule,
     CommonModule,
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },

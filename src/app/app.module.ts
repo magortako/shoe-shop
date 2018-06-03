@@ -1,3 +1,5 @@
+import { CoreModule } from './core/core.module';
+import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
 import { AdminModule } from './admin/admin.module';
 import { NgModule } from '@angular/core';
@@ -22,7 +24,6 @@ import { HomeComponent } from './core/components/home/home.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { ProductFilterComponent } from './shopping/components/products/product-filter/product-filter.component';
-import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopping-cart.component';
 
 
@@ -30,18 +31,13 @@ import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopp
 @NgModule({
   declarations: [
     AppComponent,
-    BsNavbarComponent,
-    HomeComponent,
-    ProductsComponent,
-    LoginComponent,
-    ProductFilterComponent,
-    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,
     SharedModule,
     AdminModule,
     ShoppingModule,
+    CoreModule,
     FormsModule,
     CustomFormsModule,
     DataTableModule,
