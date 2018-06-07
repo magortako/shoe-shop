@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
+import { HttpModule } from '@angular/http';
 
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
@@ -25,6 +26,7 @@ import { ShoppingModule } from './shopping/shopping.module';
     AdminModule,
     ShoppingModule,
     CoreModule,
+    HttpModule,
     AngularFireModule.initializeApp(environment.firebase), //initializes the app
     RouterModule.forRoot([
       //ANONYMOUS USER ACCESS

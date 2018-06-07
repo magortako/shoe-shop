@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { AuthGuardService } from 'shared/services/auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { DataTableModule } from 'angular5-data-table';
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
+    HttpModule,
     SharedModule,
     RouterModule.forChild([
       //ADMIN ACCESS
