@@ -48,9 +48,13 @@ export class ProductFormComponent implements OnInit {
 
   saveProduct(){
     if(this.id) this.productService.updateProduct(this.id, this.product);
+    //the createProduct method returns an observable
     else this.productService.createProduct(this.product)
+    //subscribe to the observable
     .subscribe(
+      //callback for recieved data
       (response: Response) => console.log(response),
+      //callback to fetch errors
       (error) => console.log(error)
     )
     this.router.navigate(['/admin/products']);

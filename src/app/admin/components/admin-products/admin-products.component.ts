@@ -1,3 +1,4 @@
+import { Response } from '@angular/http';
 import { Product } from 'shared/models/product';
 import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -9,7 +10,8 @@ import { DataTableResource } from "angular5-data-table";
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit, OnDestroy {
+export class AdminProductsComponent implements OnInit {
+  // products: Product[];
   products: Product[];
   subscription:Subscription;
   tableResource: DataTableResource<Product>;
@@ -18,11 +20,11 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
  
   constructor(private productService: ProductService) { 
-    this.subscription = productService.getAll()
-    .subscribe(products => {
-      this.products = products;
-      this.initializeTable(products)
-  });
+    this.productService.getAllProducts()
+    .subscribe(
+      (products: any[]) => console.log(products),
+      (error) => console.log(error)
+  );
 }
 
  //Getting all the data into the data-table
@@ -54,9 +56,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.initializeTable(filteredProducts)
   }
 
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
 
   ngOnInit() {
   }
