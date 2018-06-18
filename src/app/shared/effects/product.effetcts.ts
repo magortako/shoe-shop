@@ -14,7 +14,7 @@ export type Action = productActions.All;
 
 
 @Injectable()
-export class PostEffects {
+export class ProductEffects {
 
   constructor(private actions: Actions, private db: AngularFireDatabase) { }
 

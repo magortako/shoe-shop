@@ -6,21 +6,20 @@ import { Product } from 'shared/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import "rxjs/add/operator/switchMap";
+import 'rxjs/add/operator/switchMap';
 import { Store } from '@ngrx/store';
+
+interface AppState {
+  product: Product;
+}
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-
-interface AppState {
-  product: Product;
-}
-
 export class ProductsComponent implements OnInit {
-  //observable of products
+  // observable of products
   products: Product[] = [];
   filteredProducts: Product[];
   category: string;
@@ -63,7 +62,7 @@ export class ProductsComponent implements OnInit {
   }
 
   private applyFilter() {
-    //Setting the filtered products array
+    // Setting the filtered products array
     this.filteredProducts = (this.category) ?
       this.products.filter(p => p.category === this.category) :
       this.products;

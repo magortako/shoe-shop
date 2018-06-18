@@ -18,6 +18,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
+import { ProductEffects } from 'shared/effects/product.effetcts';
+import { productReducer } from 'shared/reducers/product.reducer';
 
 
 
@@ -32,18 +34,18 @@ import { ShoppingModule } from './shopping/shopping.module';
     ShoppingModule,
     CoreModule,
     HttpModule,
-    AngularFireModule.initializeApp(environment.firebase), //initializes the app
+    AngularFireModule.initializeApp(environment.firebase), // initializes the app
 
-    EffectsModule.forRoot([PostEffects]),
+    EffectsModule.forRoot([ProductEffects]),
 
     StoreModule.forRoot({
-      post: postReducer
+      product: productReducer
     }),
 
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
 
     RouterModule.forRoot([
-      //ANONYMOUS USER ACCESS
+      // ANONYMOUS USER ACCESS
       { path: '', component: ProductsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
