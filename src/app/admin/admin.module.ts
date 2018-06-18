@@ -1,3 +1,4 @@
+import { FilterCategories } from './../pipes/category.filter.pipe';
 import { HttpModule } from '@angular/http';
 import { AuthGuardService } from 'shared/services/auth-guard.service';
 import { RouterModule } from '@angular/router';
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     ProductFormComponent,
     AdminProductsComponent,
+    FilterCategories
   ],
   providers: [
     AdminAuthGuardService

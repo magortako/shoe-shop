@@ -4,6 +4,7 @@ import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
 import { DataTableResource } from "angular5-data-table";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-products',
@@ -12,12 +13,13 @@ import { DataTableResource } from "angular5-data-table";
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   // products: Product[];
-  products: Product[];
+  products: Product[] = [];
   subscription:Subscription;
   //encapsulate the data into an object (generic class)
   tableResource: DataTableResource<Product>;
-  items : Product[] = [];
   itemCount:number;
+  private search = new Subject();
+  searchInput : any;
 
  
   constructor(private productService: ProductService) { 
@@ -60,16 +62,22 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   }
 
-  filter(query:string){
-    // console.log(query)
-    let filteredProducts = (query) ? this.products.filter( p => p.title.toLowerCase().includes(query.toLowerCase())) : 
-    this.products; 
+  // filter(query:string){
+  //   // console.log(query)
+  //   let filteredProducts = (query) ? this.products.filter( p => p.title.toLowerCase().includes(query.toLowerCase())) : 
+  //   this.products; 
 
-    this.initializeTable(filteredProducts)
-  }
+  //   this.initializeTable(filteredProducts)
+  // }
+
+
 
 
   ngOnInit() {
+    // this.search.subscribe(data => {
+    //   this.searchInput = data;
+    // })
+
   }
 
   ngOnDestroy(){
