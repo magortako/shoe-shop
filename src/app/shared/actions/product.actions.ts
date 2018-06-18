@@ -8,7 +8,6 @@ export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
 export class GetProducts implements Action {
   readonly type = GET_PRODUCTS;
   public payload = null;
-  // constructor(public payload: string) { }
 }
 
 export class GetProductsSuccess implements Action {

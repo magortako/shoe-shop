@@ -18,10 +18,10 @@ export class ProductEffects {
 
 
   @Effect()
-  public getProduces: Observable<Action> = this.actions.ofType(productActions.GET_PRODUCTS)
+  public getProduces: Observable<Action> = this.actions
+    .ofType(productActions.GET_PRODUCTS)
     .mergeMap(payload => this.productService.getAll())
     .map(products => {
-      console.log(products);
 
       const productArray: Product[] = [];
 
