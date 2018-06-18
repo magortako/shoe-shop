@@ -47,25 +47,22 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    this.products$.subscribe((prod) => {
-      console.log(prod);
-      this.products = prod.products;
-
-    });
-
-    // this.cart$ = await this.shoppingCartService.getCart();
-    // this.populateProducts();
+    this.cart$ = await this.shoppingCartService.getCart();
+    this.populateProducts();
   }
 
   private populateProducts() {
 
-    this.productService.getAll().switchMap(products => {
-      this.products = products;
-      return this.route.queryParamMap;
-    })
-      .subscribe(params => {
+    this.products$
+      .map((prod) => {
+        this.products = prod.products;
+      })
+      .switchMap(() => {
+        return this.route.queryParamMap;
+      })
+      .subscribe((params) => {
         this.category = params.get('category');
         this.applyFilter();
       });
@@ -73,10 +70,7 @@ export class ProductsComponent implements OnInit {
 
   private applyFilter() {
     // Setting the filtered products array
-    this.filteredProducts = (this.category) ?
-      this.products.filter(p => p.category === this.category) :
-      this.products;
+    this.filteredProducts = (this.category) ? this.products.filter(p => p.category === this.category) : this.products;
   }
-
 
 }

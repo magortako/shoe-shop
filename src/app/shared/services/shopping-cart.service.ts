@@ -13,7 +13,7 @@ export class ShoppingCartService {
 
 
   async getCart() {
-    let cartId = await this.getOrCreateCartId();
+    const cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId).map(x => new ShoppingCart(x.items));
   }
 
@@ -27,9 +27,9 @@ export class ShoppingCartService {
   }
 
 
-  async clearCart(){
+  async clearCart() {
     let cartId = await this.getOrCreateCartId();
-    this.db.object('/shopping-carts/' + cartId + '/items' ).remove();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
 
   private create() {
@@ -44,11 +44,11 @@ export class ShoppingCartService {
 
   private async getOrCreateCartId(): Promise<string> {
 
-    let cartId = localStorage.getItem('cartId');
+    const cartId = localStorage.getItem('cartId');
 
-    if (cartId) return cartId;
+    if (cartId) { return cartId; }
 
-    let result = await this.create();
+    const result = await this.create();
     localStorage.setItem('cartId', result.key);
     return result.key;
 
@@ -56,24 +56,26 @@ export class ShoppingCartService {
 
 
   private async updateItem(product: Product, change: number) {
-    let cartId = await this.getOrCreateCartId();
-    let item$ = this.getItem(cartId, product.$key);
+    const cartId = await this.getOrCreateCartId();
+    const item$ = this.getItem(cartId, product.$key);
     item$.take(1).subscribe(item => {
 
-      let quantity = (item.quantity || 0) +change;
-      //remove item if quantity reaches 0
-      if (quantity === 0) item$ .remove();
-      //Here we want to update the quantity
-      //item$ is a reference to a node in Firebase
-      else
-      item$.update({
-        title: product.title,
-        imageUrl: product.imageUrl,
-        price: product.price,
-        quantity: quantity
-      });
-      //calculation of quantity
-      //quantity set to one if product is not in the shopping cart already
+      const quantity = (item.quantity || 0) + change;
+      // remove item if quantity reaches 0
+      if (quantity === 0) {
+        item$.remove();
+      } else {
+        // Here we want to update the quantity
+        // item$ is a reference to a node in Firebase
+        item$.update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: quantity
+        });
+      }
+      // calculation of quantity
+      // quantity set to one if product is not in the shopping cart already
 
     });
 
