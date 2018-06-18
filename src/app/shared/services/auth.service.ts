@@ -22,15 +22,17 @@ export class AuthService {
 
     }
 
-  login() {//implementing login method
+  login(email, password){
+
+  }  
+
+  loginGoogle() {//implementing login method
     //here we store the route path that the user wanted to access or redirect them to the homepage
     let returnUrl=this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     //store in localstorage
     localStorage.setItem('returnUrl' , returnUrl);
-
     //after saving the url in the loc storage, we can be redirected to google authentication platform
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());    //firebase class for authorization
-    
   }
 
   logout() {

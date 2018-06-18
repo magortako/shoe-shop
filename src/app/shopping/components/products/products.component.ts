@@ -7,12 +7,18 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import "rxjs/add/operator/switchMap";
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+
+interface AppState {
+  product: Product;
+}
+
 export class ProductsComponent implements OnInit {
   //observable of products
   products: Product[] = [];
@@ -21,12 +27,24 @@ export class ProductsComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
 
   constructor(
+    private store: Store<AppState>,
     private route: ActivatedRoute,
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService
-  ) { }
+  ) {
+
+    // this.productService.getAllProducts()
+    // .subscribe(
+    //   (products: Product[]) => console.log(products),
+    //   (error) => console.log(error)
+    // );
+
+  }
 
   async ngOnInit() {
+
+
+
     this.cart$ = await this.shoppingCartService.getCart();
     this.populateProducts();
   }

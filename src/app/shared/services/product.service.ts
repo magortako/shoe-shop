@@ -2,7 +2,7 @@ import { Product } from './../models/product';
 import { Http, Headers, Response } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ProductService {
@@ -15,43 +15,29 @@ export class ProductService {
     //the url.json tells firebase that we want to work with the database 
     return this.http.post('https://e-shop-f49b7.firebaseio.com/products.json', product, {headers:headers})
   }
-
-
-  getAllProducts(){
-    const headers = new Headers({'Content-Type':'application/json'});
-    return this.http.get('https://e-shop-f49b7.firebaseio.com/products.json', {headers:headers})
-    //the map operator takes the old observable and wrap the data we get back into tranformed data and wrap it into another observable
-    .map(
-      (response: Response) => {
-        const data = response.json();
-        for ( const product of data) {
-          product.title = product.title;
-        }
-        return data;
-      }
-    );
-  }
-
+  
   // create(product) {
   //   //push product from product-form.html
   //   this.db.list('/products').push(product)
   // }
 
-  //method for returning all products from the db
-  // getAll(){
-  //   return this.db.list('/products');
-  // }
 
   // getAllProducts(){
-  //   this.http.get('https://e-shop-f49b7.firebaseio.com/products.json')
-  //   .subscribe(
-  //     (response:Response) =>{
-  //       //extract the data and turn into a javascript object 
-  //       const products: Product[] = response.json();
-  //       this.pro
+  //   // const headers = new Headers({'Content-Type':'application/json'});
+  //   return this.http.get('https://e-shop-f49b7.firebaseio.com/products.json')
+  //   //the map operator takes the old observable and wrap the data we get back into tranformed data and wrap it into another observable
+  //   .map(
+  //     (response: Response) => {
+  //       const data = response.json();
+  //       return data;
   //     }
   //   );
   // }
+
+  //method for returning all products from the db
+  getAll(){
+    return this.db.list('/products');
+  }
 
   //method to retrieve one product by id
   getProduct(productId){

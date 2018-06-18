@@ -10,21 +10,33 @@ import { DataTableResource } from "angular5-data-table";
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
+export class AdminProductsComponent implements OnInit, OnDestroy {
   // products: Product[];
   products: Product[];
   subscription:Subscription;
+  //encapsulate the data into an object (generic class)
   tableResource: DataTableResource<Product>;
   items : Product[] = [];
   itemCount:number;
 
  
   constructor(private productService: ProductService) { 
-    this.productService.getAllProducts()
-    .subscribe(
-      (products: any[]) => console.log(products),
-      (error) => console.log(error)
-  );
+  //   this.productService.getAllProducts()
+  //   .subscribe(
+  //     (products:Product[]) => 
+  //       this.products = products,
+  //       // console.log(products),
+  //       // this.initializeTable(products);
+  //     (error) => console.log(error)
+  // );
+
+
+  this.subscription = productService.getAll()
+  .subscribe(products => {
+    this.products = products;
+    this.initializeTable(products)
+});
+
 }
 
  //Getting all the data into the data-table
@@ -59,5 +71,10 @@ export class AdminProductsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+
 
 }

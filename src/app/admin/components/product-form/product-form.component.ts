@@ -53,11 +53,12 @@ export class ProductFormComponent implements OnInit {
     //subscribe to the observable
     .subscribe(
       //callback for recieved data
-      (response: Response) => console.log(response),
+      (response: Response) => this.router.navigate(['/admin/products']);
       //callback to fetch errors
-      (error) => console.log(error)
+      (error) =>{ 
+        alert('Product could not be created')
+      }
     )
-    this.router.navigate(['/admin/products']);
   }
 
 

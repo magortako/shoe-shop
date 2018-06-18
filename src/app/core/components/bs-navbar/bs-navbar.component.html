@@ -30,6 +30,10 @@
             <!-- display login link //we wanna display this only if user is null -->
             <a class="nav-link" routerLink="/login">Login</a>
           </li>
+          <li class="nav-item">
+            <!-- display login link //we wanna display this only if user is null -->
+            <a class="nav-link" routerLink="/register">Register</a>
+          </li>
         </ng-template>
         <li ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item dropdown">
           <!-- this is where we display the users name // display this if we have a user object -->
