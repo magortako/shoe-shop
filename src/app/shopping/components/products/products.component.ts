@@ -8,9 +8,11 @@ import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Store } from '@ngrx/store';
+import { GetProducts } from 'shared/actions/product.actions';
+import { IProductState } from 'shared/reducers/product.reducer';
 
 interface AppState {
-  product: Product;
+  product: IProductState;
 }
 
 @Component({
@@ -20,7 +22,10 @@ interface AppState {
 })
 export class ProductsComponent implements OnInit {
   // observable of products
-  products: Product[] = [];
+  public products$ = this.store.select((s) => s.product);
+
+  public products: Product[] = null;
+
   filteredProducts: Product[];
   category: string;
   cart$: Observable<ShoppingCart>;
@@ -38,14 +43,20 @@ export class ProductsComponent implements OnInit {
     //   (error) => console.log(error)
     // );
 
+    this.store.dispatch(new GetProducts());
+
   }
 
-  async ngOnInit() {
+  ngOnInit() {
 
+    this.products$.subscribe((prod) => {
+      console.log(prod);
+      this.products = prod.products;
 
+    });
 
-    this.cart$ = await this.shoppingCartService.getCart();
-    this.populateProducts();
+    // this.cart$ = await this.shoppingCartService.getCart();
+    // this.populateProducts();
   }
 
   private populateProducts() {
@@ -57,7 +68,6 @@ export class ProductsComponent implements OnInit {
       .subscribe(params => {
         this.category = params.get('category');
         this.applyFilter();
-
       });
   }
 

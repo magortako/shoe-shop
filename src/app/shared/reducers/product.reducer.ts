@@ -3,18 +3,35 @@ import { Product } from '../models/product';
 
 export type Action = PostActions.All;
 
-/// Reducer function
+export interface IProductState {
+  loading: boolean;
+  products: Product[];
+}
+
+const initialState: IProductState = {
+  loading: false,
+  products: [],
+};
+
+// Reducer function
 export function productReducer(state: Product, action: Action) {
 
   switch (action.type) {
 
-    case PostActions.GET_PRODUCT: {
+    case PostActions.GET_PRODUCTS: {
       return { ...state, loading: true };
-
     }
 
-    case PostActions.GET_PRODUCT_SUCCESS: {
-      return { ...state, ...action.payload, loading: false };
+    case PostActions.GET_PRODUCTS_SUCCESS: {
+      return {
+        ...state,
+        products: [
+
+          ...action.payload,
+
+        ],
+        loading: false
+      };
 
     }
 

@@ -9,13 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input('product') product: Product;
-  @Input ('show-actions') showActions = true;
-   @Input ('shopping-cart') shoppingCart;
+  @Input('show-actions') showActions = true;
+  @Input('shopping-cart') shoppingCart;
 
   constructor(private cartService: ShoppingCartService) { }
 
   addToCart() {
-    this.cartService.addToCart(this.product)
+    this.cartService.addToCart(this.product);
   }
 
 }
