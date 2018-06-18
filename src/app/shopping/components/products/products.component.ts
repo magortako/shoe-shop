@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { GetProducts } from 'shared/actions/product.actions';
 import { IProductState } from 'shared/reducers/product.reducer';
 
-interface AppState {
+export interface AppState {
   product: IProductState;
 }
 

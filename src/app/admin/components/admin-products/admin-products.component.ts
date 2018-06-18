@@ -5,6 +5,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DataTableResource } from 'angular5-data-table';
 import { Subject } from 'rxjs/Subject';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../shopping/components/products/products.component';
+import { GetProducts } from 'shared/actions/product.actions';
 
 @Component({
   selector: 'app-admin-products',
@@ -13,6 +16,9 @@ import { Subject } from 'rxjs/Subject';
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   // products: Product[];
+
+  public products$ = this.store.select((s) => s.product);
+
   products: Product[] = [];
   public items: Product[];
   subscription: Subscription;
@@ -23,7 +29,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   searchInput: any;
 
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    private store: Store<AppState>,
+  ) {
     //   this.productService.getAllProducts()
     //   .subscribe(
     //     (products:Product[]) =>
@@ -33,11 +42,17 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     //     (error) => console.log(error)
     // );
 
+    this.store.dispatch(new GetProducts());
+
+    this.products$.subscribe((prod) => {
+      this.products = prod.products;
+      this.initializeTable(prod.products);
+
+    });
+
 
     this.subscription = productService.getAll()
       .subscribe(products => {
-        this.products = products;
-        this.initializeTable(products);
       });
 
   }
