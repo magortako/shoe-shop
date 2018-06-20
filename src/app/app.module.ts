@@ -21,6 +21,7 @@ import { ProductsComponent } from './shopping/components/products/products.compo
 import { ShoppingModule } from './shopping/shopping.module';
 import { ProductEffects } from 'shared/effects/product.effetcts';
 import { productReducer } from 'shared/reducers/product.reducer';
+import { AuthService } from 'shared/services/auth.service';
 
 
 
@@ -54,7 +55,8 @@ import { productReducer } from 'shared/reducers/product.reducer';
 
   ],
   providers: [
-    AdminAuthGuardService
+    AdminAuthGuardService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

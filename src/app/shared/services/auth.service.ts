@@ -22,6 +22,13 @@ export class AuthService {
 
     }
 
+    signUpUser(email:string, password:string){
+      this.afAuth.auth.createUserWithEmailAndPassword(email,password)
+        .catch(
+          error => alert('User could not be created')
+        )
+    }
+
   login(email, password){
 
   }  
