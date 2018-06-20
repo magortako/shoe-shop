@@ -14,7 +14,7 @@
 <!-- Filter Products by title, price etc -->
 
 <data-table 
-    [items]="items | filterCategories: searchInput"
+    [items]="items | filterProducts: searchInput"
     [itemCount]="itemCount"
     (reload) = "reloadItems($event)"
 >

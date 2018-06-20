@@ -1,5 +1,4 @@
-import { FilterCategories } from './../pipes/category.filter.pipe';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from 'shared/services/auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { DataTableModule } from 'angular5-data-table';
@@ -10,10 +9,12 @@ import { AdminProductsComponent } from './components/admin-products/admin-produc
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Filterproducts } from '../pipes/product.filter.pipe';
+import { CategoryFilter } from '../pipes/category.filter.pipe';
 
 @NgModule({
   imports: [
-    HttpModule,
+    HttpClientModule,
     SharedModule,
     RouterModule.forChild([
       //ADMIN ACCESS
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     ProductFormComponent,
     AdminProductsComponent,
-    FilterCategories
+    Filterproducts,
+    CategoryFilter
   ],
   providers: [
     AdminAuthGuardService

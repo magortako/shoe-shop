@@ -25,7 +25,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   // encapsulate the data into an object (generic class)
   tableResource: DataTableResource<Product>;
   itemCount: number;
-  private search = new Subject();
   searchInput: any;
 
 
@@ -78,21 +77,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   }
 
-  // filter(query:string){
-  //   // console.log(query)
-  //   let filteredProducts = (query) ? this.products.filter( p => p.title.toLowerCase().includes(query.toLowerCase())) :
-  //   this.products;
-
-  //   this.initializeTable(filteredProducts)
-  // }
-
-
-
-
   ngOnInit() {
-    // this.search.subscribe(data => {
-    //   this.searchInput = data;
-    // })
 
   }
 

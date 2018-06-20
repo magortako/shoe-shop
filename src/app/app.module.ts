@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -33,7 +34,7 @@ import { productReducer } from 'shared/reducers/product.reducer';
     AdminModule,
     ShoppingModule,
     CoreModule,
-    HttpModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase), // initializes the app
 
     EffectsModule.forRoot([ProductEffects]),
