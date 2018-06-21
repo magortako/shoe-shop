@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 // import { Router } from '@angular/router';
 import { AuthService } from 'shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent {
   // form: FormGroup;
 
-  constructor(private auth: AuthService){
+  constructor(private authService: AuthService){
     // private router: Router) {
 
     // this.form = this.formBuilder.group({
@@ -32,8 +33,14 @@ export class LoginComponent {
   //     )
   //  }
 
+  onLogIn(form: NgForm){
+    const email = form.value.email;
+    const password = form.value.password;
+    this.authService.loginUser(email, password)
+  }
+
   loginGoogle(){
-    this.auth.loginGoogle() //it is calling the login method
+    this.authService.loginGoogle() //it is calling the login method
   }
 
 }

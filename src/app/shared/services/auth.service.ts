@@ -23,14 +23,20 @@ export class AuthService {
     }
 
     signUpUser(email:string, password:string){
-      this.afAuth.auth.createUserWithEmailAndPassword(email,password)
+      this.afAuth.auth.createUserWithEmailAndPassword( email,password)
         .catch(
           error => alert('User could not be created')
         )
     }
 
-  login(email, password){
-
+  loginUser(email:string, password:string){
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(
+        response => console.log(response)
+      )
+      .catch ( 
+        error => alert('Log In failed')
+      )
   }  
 
   loginGoogle() {//implementing login method
