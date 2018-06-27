@@ -22,7 +22,7 @@ import { ShoppingModule } from './shopping/shopping.module';
 import { ProductEffects } from 'shared/effects/product.effetcts';
 import { productReducer } from 'shared/reducers/product.reducer';
 import { AuthService } from 'shared/services/auth.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -37,7 +37,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ShoppingModule,
     CoreModule,
     HttpClientModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), // initializes the app
 
     EffectsModule.forRoot([ProductEffects]),
@@ -55,6 +54,9 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: 'register', component: RegisterComponent },
     ])
 
+  ],
+  exports: [
+    ReactiveFormsModule
   ],
   providers: [
     AdminAuthGuardService,

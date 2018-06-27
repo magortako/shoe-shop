@@ -6,21 +6,22 @@ import { HomeComponent } from 'app/core/components/home/home.component';
 import { BsNavbarComponent } from 'app/core/components/bs-navbar/bs-navbar.component';
 import { LoginComponent } from 'app/core/components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([]),
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     BsNavbarComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
-  exports: [
-    BsNavbarComponent
-  ]
+  exports: [BsNavbarComponent]
 })
-export class CoreModule { }
+export class CoreModule {}
