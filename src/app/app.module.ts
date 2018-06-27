@@ -22,6 +22,7 @@ import { ShoppingModule } from './shopping/shopping.module';
 import { ProductEffects } from 'shared/effects/product.effetcts';
 import { productReducer } from 'shared/reducers/product.reducer';
 import { AuthService } from 'shared/services/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -36,6 +37,7 @@ import { AuthService } from 'shared/services/auth.service';
     ShoppingModule,
     CoreModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), // initializes the app
 
     EffectsModule.forRoot([ProductEffects]),

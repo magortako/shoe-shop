@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { UserService } from 'shared/services/user.service';
 import { AppUser } from 'shared/models/app-user';
 import { Observable } from 'rxjs/Observable';
@@ -15,19 +16,22 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth, 
     private route: ActivatedRoute, 
-    private userservice: UserService) 
+    private userservice: UserService,
+    private httpClient : HttpClient
+  ) 
     { 
 
     this.user$ = afAuth.authState;
 
     }
 
-    signUpUser(email:string, password:string){
-      this.afAuth.auth.createUserWithEmailAndPassword( email,password)
-        .catch(
-          error => alert('User could not be created')
-        )
-    }
+    signUpUser(form){
+      // this.afAuth.auth.createUserWithEmailAndPassword( email,password)
+      //   .catch(
+      //     error => alert('User could not be created')
+      //   )
+      return this.httpClient.post('https://e-shop-f49b7.firebaseio.com/users.json', form)
+    };
 
   loginUser(email:string, password:string){
     firebase.auth().signInWithEmailAndPassword(email, password)

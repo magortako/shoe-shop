@@ -1,4 +1,3 @@
-import { Product } from './../../../shared/models/product';
 import { Product } from 'shared/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
