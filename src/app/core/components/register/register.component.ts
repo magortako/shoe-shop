@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,14 +10,16 @@ import { AuthService } from 'shared/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   public registerForm = this.formBuilder.group({
-    firstName: ['', Validators.required],
+    name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
+
   constructor(
     private authService: AuthService,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -26,7 +29,9 @@ export class RegisterComponent implements OnInit {
       user => {
         alert(`User ${user} was created`);
       },
-      err => alert(`user could not be created`)
+      err => alert(`user could not be created`),
+      () => this.router.navigate([''])
+      
     );
   }
 }

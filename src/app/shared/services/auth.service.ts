@@ -34,6 +34,8 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string) {
+    // return this.httpClient.get('https://e-shop-f49b7.firebaseio.com/users.json')
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)

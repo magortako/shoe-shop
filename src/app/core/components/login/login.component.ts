@@ -1,8 +1,7 @@
-import { NgForm } from '@angular/forms';
-// import { Router } from '@angular/router';
 import { AuthService } from 'shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-// import { Validators,FormGroup, FormBuilder } from '@angular/forms';
+import { Validators,FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,28 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  // form: FormGroup;
+  public loginForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
 
-  constructor(private authService: AuthService) {
-    // private router: Router) {
-    // this.form = this.formBuilder.group({
-    //   email: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // })
+  constructor(
+    private authService: AuthService,
+    private readonly formBuilder: FormBuilder,
+    private router: Router) {
   }
 
-  //  login(){
-  //    const formValue = this.form.value;
 
-  //    this.auth.login(formValue.email, formValue.password)
-  //     .subscribe(
-  //       () => this.router.navigate(['']),
-  //     )
-  //  }
-
-  onLogIn(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
+  onLogIn() {
+    const email = this.loginForm.value.email;
+    const password =this.loginForm.value.password;
     this.authService.loginUser(email, password);
   }
 
