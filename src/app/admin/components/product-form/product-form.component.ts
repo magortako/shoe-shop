@@ -13,7 +13,6 @@ import { Response } from '@angular/http';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-
   categories$;
   product = {};
   // product:Product[];
@@ -32,7 +31,10 @@ export class ProductFormComponent implements OnInit {
     // if we have an id, we want to read the product with this id from firebase
     // we need to subscribe to an observable to read this product
     if (this.id) {
-      this.productService.getProduct(this.id).take(1).subscribe(p => this.product = p);
+      // this.productService.getProduct(this.id).take(1).subscribe(p => this.product = p);
+      this.productService.getProduct(this.id).subscribe(p => {
+        this.product = p;
+      });
     }
   }
 
@@ -48,22 +50,31 @@ export class ProductFormComponent implements OnInit {
   //  }
 
   saveProduct() {
+    console.log(this.id, this.product);
     if (this.id) {
-      this.productService.updateProduct(this.id, this.product);
+      this.productService.updateProduct(this.id, this.product).subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        },
+        () =>{
+
+        }
+      );
     } else {
       // subscribe to the observable
-      this.productService.createProduct(this.product)
-        .subscribe(
-          // callback for recieved data
-          (response: Response) => this.router.navigate(['/admin/products']),
-          // callback to fetch errors
-          (error) => {
-            alert('Product could not be created')
-          }
-        );
+      this.productService.createProduct(this.product).subscribe(
+        // callback for receive data
+        (response: Response) => this.router.navigate(['/admin/products']),
+        // callback to fetch errors
+        error => {
+          alert('Product could not be created');
+        }
+      );
     }
   }
-
 
   deleteProduct() {
     // ask user for confirmation
@@ -75,7 +86,5 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/products']);
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
