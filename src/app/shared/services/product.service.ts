@@ -70,7 +70,7 @@ export class ProductService {
   }
 
   delete(productId) {
-    return 123;
+    return this.httpClient.delete(`https://e-shop-f49b7.firebaseio.com/products/${productId}.json`);
     // return this.db.object('/products/' + productId).remove();
     // return this.httpClient.delete(`https://e-shop-f49b7.firebaseio.com/products/${productId}.json`);
   }

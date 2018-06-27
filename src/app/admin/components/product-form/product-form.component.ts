@@ -1,3 +1,4 @@
+import { Product } from './../../../shared/models/product';
 import { Product } from 'shared/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
@@ -14,7 +15,7 @@ import { Response } from '@angular/http';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product:any = {};
   // product:Product[];
   id;
 
@@ -82,7 +83,13 @@ export class ProductFormComponent implements OnInit {
       return;
     }
 
-    this.productService.delete(this.id);
+    this.productService.delete(this.id).subscribe(
+      product => {},
+      error => {
+        alert ('Error')
+      },
+      () => alert(`product deleted ${this.product.title}`)
+    )
     this.router.navigate(['/admin/products']);
   }
 
