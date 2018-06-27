@@ -1,36 +1,41 @@
 import { AppPage } from './app.po';
 import { browser, by, element } from 'protractor';
 
-describe('e-shop App', () => {
+describe('e-shop App Login', () => {
   let page: AppPage;
 
   beforeEach(() => {
+    browser.waitForAngularEnabled(false);
     page = new AppPage();
   });
 
-   it('should be directed to login page', () => {
-    page.navigateTo('/');
+  it('should be directed to login page', () => {
+    page.navigateToLogin();
+
     expect(browser.getCurrentUrl()).toContain('/login');
+    // TODO remove this
+    browser.driver.sleep(2000);
   });
 
   it('should login as a student', () => {
+    page.navigateToLogin();
 
     const emailInput = element(by.css('input[formControlName="email"]'));
     const passInput = element(by.css('input[formControlName="password"]'));
 
     emailInput.sendKeys('cristianpand@yahoo.com');
-    passInput.sendKeys('pass123');
+    passInput.sendKeys('123456');
 
-    expect(emailInput.getAttribute('value')).toEqual('student.one@stud.kea.dk');
-    expect(passInput.getAttribute('value')).toEqual('pass123');
+    expect(emailInput.getAttribute('value')).toEqual('cristianpand@yahoo.com');
+    expect(passInput.getAttribute('value')).toEqual('123456');
 
+    // TODO remove this
+    browser.driver.sleep(2000);
 
-    element(by.tagName('button')).click();
+    element(by.id('btn1')).click();
 
-  });
-
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(browser.getCurrentUrl()).toContain('/');
+    // TODO remove this
+    browser.driver.sleep(2000);
   });
 });

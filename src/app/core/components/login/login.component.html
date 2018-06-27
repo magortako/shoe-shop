@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 
   col-sm-offset-1 col-md offset-2">
-    <form [formGroup]="loginForm" (ngSubmit)="onLogIn()" >
+    <form [formGroup]="loginForm" (ngSubmit)="onLogIn()">
       <div class="form-group">
         <label for="email">Email address</label>
         <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter email">
@@ -11,10 +11,9 @@
         <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
       </div>
       <button type="submit" class="btn btn-primary">Log In</button>
+      <button id="btn1" (click)="loginGoogle()" class="btn btn-secondary">
+        Login with Google
+      </button>
     </form>
-    <br>
-    <button (click)="loginGoogle()" class="btn btn-secondary">
-      Login with Google
-    </button>
   </div>
 </div>

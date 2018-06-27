@@ -1,6 +1,6 @@
 import { AuthService } from 'shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Validators,FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,14 +17,14 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private readonly formBuilder: FormBuilder,
-    private router: Router) {
-  }
-
+    private router: Router
+  ) {}
 
   onLogIn() {
     const email = this.loginForm.value.email;
-    const password =this.loginForm.value.password;
+    const password = this.loginForm.value.password;
     this.authService.loginUser(email, password);
+    this.router.navigate(['']);
   }
 
   loginGoogle() {
