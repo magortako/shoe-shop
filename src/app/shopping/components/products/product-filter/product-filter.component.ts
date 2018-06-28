@@ -8,11 +8,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductFilterComponent implements OnInit {
   categories$;
+
+
   @Input ('category') category;
   
   constructor( categoryService: CategoryService )
   { 
-    this.categories$ = categoryService.getAll();
+    this.categories$ = categoryService.getAll()
+    // .subscribe(
+    //   data => {
+    //     console.log(data);
+    //   },
+    //   err => {
+    //     console.log('Categories are not bein displayed')
+    //   }
+    // )
   }
 
   ngOnInit() {

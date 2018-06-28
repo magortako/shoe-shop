@@ -4,7 +4,7 @@ import { Headers } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ProductService {
@@ -43,14 +43,14 @@ export class ProductService {
     // const headers = new Headers({ 'Content-Type': 'application/json' });
     return this.httpClient
       .get<Product[]>('https://e-shop-f49b7.firebaseio.com/products.json')
-      .map(products => {
-        for (const product of products) {
-          if (!product) {
-            // product = []
-          }
-        }
-        return products;
-      });
+      // .map(products => {
+      //   for (const product of products) {
+      //     if (!product) {
+      //       // product = []
+      //     }
+      //   }
+      //   return products;
+      // });
   }
 
   // method to retrieve one product by id

@@ -5,8 +5,6 @@ import { ProductService } from 'shared/services/product.service';
 import { CategoryService } from 'shared/services/category.service';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/take';
-import { Response } from '@angular/http';
-
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -38,17 +36,6 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  //  save(product){
-  //   //update product
-  //   if(this.id) this.productService.updateProduct(this.id, product);
-  //   else this.productService.createProduct(product);
-
-  //   //  this.productService.create(product);
-  //    console.log(product);
-
-  //    this.router.navigate(['/admin/products']);
-  //  }
-
   saveProduct() {
     console.log(this.id, this.product);
     if (this.id) {
@@ -67,10 +54,11 @@ export class ProductFormComponent implements OnInit {
       // subscribe to the observable
       this.productService.createProduct(this.product).subscribe(
         // callback for receive data
-        (response: Response) => this.router.navigate(['/admin/products']),
-        // callback to fetch errors
-        error => {
-          alert('Product could not be created');
+        data => {
+          this.router.navigate(['/admin/products'])
+        },
+        err=>{
+          alert('Product could not be created')
         }
       );
     }

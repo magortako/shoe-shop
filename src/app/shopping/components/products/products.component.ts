@@ -37,12 +37,6 @@ export class ProductsComponent implements OnInit {
     private shoppingCartService: ShoppingCartService
   ) {
 
-    // this.productService.getAllProducts()
-    // .subscribe(
-    //   (products: Product[]) => console.log(products),
-    //   (error) => console.log(error)
-    // );
-
     this.store.dispatch(new GetProducts());
 
   }
@@ -64,14 +58,14 @@ export class ProductsComponent implements OnInit {
       })
       .subscribe((params) => {
         this.category = params.get('category');
-        // this.applyFilter();
+        this.applyFilter();
       });
   }
 
-  // private applyFilter() {
-  //   // Setting the filtered products array
-  //   this.filteredProducts = (this.category) ? 
-  //   this.products.filter(p => p.category === this.category) : this.products;
-  // }
+  private applyFilter() {
+    // Setting the filtered products array
+    this.filteredProducts = (this.category) ? 
+    this.products.filter(p => p.category === this.category) : this.products;
+  }
 
 }

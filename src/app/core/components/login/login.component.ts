@@ -24,7 +24,7 @@ export class LoginComponent {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.authService.loginUser(email, password);
-    this.router.navigate(['']);
+    // this.router.navigate(['']);
   }
 
   loginGoogle() {

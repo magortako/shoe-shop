@@ -27,10 +27,7 @@ export class AuthService {
     //   .catch(
     //     error => alert('User could not be created')
     //   )
-    return this.httpClient.post(
-      'https://e-shop-f49b7.firebaseio.com/users.json',
-      form
-    );
+    return this.httpClient.post('https://e-shop-f49b7.firebaseio.com/users.json',form);
   }
 
   loginUser(email: string, password: string) {
