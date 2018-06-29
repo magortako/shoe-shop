@@ -4,7 +4,7 @@
 <p>
     <!-- filter products event -->
     <!-- <input
-    #query 
+    #query
     (keyup) ="filter(query.value)"
     type="text" class="form-control" placeholder="Search..."> -->
     <input
@@ -13,7 +13,7 @@
 
 <!-- Filter Products by title, price etc -->
 
-<data-table 
+<data-table
     [items]="items | filterProducts: searchInput"
     [itemCount]="itemCount"
     (reload) = "reloadItems($event)"
@@ -34,7 +34,7 @@
     [resizable]="true"
 >
 <ng-template #dataTableCell let-item="item">
-    {{item.price | currency: 'EUR' : true}}
+    {{item.price | currency: 'EUR' : 'symbol'}}
 </ng-template>
 </data-table-column>
 
@@ -48,7 +48,7 @@
 </data-table-column>
 
 </data-table>
-<!-- 
+<!--
 <table class="table">
     <thead>
         <tr>
