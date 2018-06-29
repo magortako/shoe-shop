@@ -1,28 +1,33 @@
-import * as PostActions from '../actions/product.actions';
+import * as ProductAction from '../actions/product.actions';
 import { Product } from '../models/product';
 
-export type Action = PostActions.All;
+export type Action = ProductAction.All;
 
 export interface IProductState {
   loading: boolean;
   products: Product[];
 }
 
-const initialState: IProductState = {
+export const initialState: IProductState = {
   loading: false,
   products: [],
 };
 
 // Reducer function
-export function productReducer(state: Product, action: Action) {
+export function productReducer(state = initialState, action: Action) {
+
+  console.log(state);
 
   switch (action.type) {
 
-    case PostActions.GET_PRODUCTS: {
-      return { ...state, loading: true };
+    case ProductAction.GET_PRODUCTS: {
+      return {
+        ...state,
+        loading: true
+      };
     }
 
-    case PostActions.GET_PRODUCTS_SUCCESS: {
+    case ProductAction.GET_PRODUCTS_SUCCESS: {
       return {
         ...state,
         products: [
