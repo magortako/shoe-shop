@@ -4,7 +4,7 @@ import { AdminProductsComponent } from './admin-products.component';
 import { CoreModule } from '../../../core/core.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'shared/shared.module';
-import { FilterCategories } from '../../../pipes/category.filter.pipe';
+// import { FilterCategories } from '../../../pipes/category.filter.pipe';
 import { RouterModule } from '@angular/router';
 
 xdescribe('AdminProductsComponent', () => {
@@ -19,7 +19,7 @@ xdescribe('AdminProductsComponent', () => {
       ],
       declarations: [
         AdminProductsComponent,
-        FilterCategories
+        // FilterCategories
       ]
     })
       .compileComponents();
